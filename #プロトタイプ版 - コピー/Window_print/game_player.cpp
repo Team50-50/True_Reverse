@@ -224,7 +224,7 @@ void push(Stack* stack, D3DXVECTOR2 playerPosition)
 	stack->recordFrame++;
 }
 
-//POP...positionデータをスタックから取り出す、毎回最後 PUSH した positionデータからを取り出す
+//POP...positionデータをスタックから取り出す、毎回最後 PUSH した positionデータから取り出す
 D3DXVECTOR2 pop(Stack* stack)
 {
 	D3DXVECTOR2 ret;
