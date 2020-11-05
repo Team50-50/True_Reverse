@@ -22,9 +22,6 @@ typedef struct Player_tag
 	D3DXVECTOR2 prevposition;
 	D3DXVECTOR2 direction;
 	D3DXVECTOR2 speed;
-	float velocity;
-	float hp;
-	float gravity;
 	bool  isJump;
 
 }Player;

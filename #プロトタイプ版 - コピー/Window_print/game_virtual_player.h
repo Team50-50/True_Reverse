@@ -36,8 +36,6 @@ void VPlayer_Draw(void);
 
 VPlayer GetVPlayer(void);
 
-
-
 #endif // !GAME_VIRTUAL_PLAYER_H_
 
 

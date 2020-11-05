@@ -298,12 +298,11 @@ void Draw(void)
 	DebugFont_Draw(400.0f, 45.0f, buf);
 
 	VPlayer vplayer = GetVPlayer();
-	sprintf(buf, "px=%.2f", vplayer.position.x);
-	DebugFont_Draw(700.0f, 0.0f, buf);
+	sprintf(buf, "Vpx=%.2f", vplayer.position.x);
+	DebugFont_Draw(900.0f, 0.0f, buf);
 
-	sprintf(buf, "py=%.2f", vplayer.position.y);
-	DebugFont_Draw(700.0f, 45.0f, buf);
-
+	sprintf(buf, "Vpy=%.2f", vplayer.position.y);
+	DebugFont_Draw(900.0f, 45.0f, buf);
 	
 	//デバッグ図形描画命令の実行
 	DebugPrimitive_BatchRun();

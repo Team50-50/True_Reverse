@@ -46,8 +46,6 @@ void GamePlayer_Initialize(void)
 	g_Player.position = D3DXVECTOR2(32.0f, 300.0f);
 	g_Player.direction = D3DXVECTOR2(0.0f, 0.0f);
 	g_Player.speed = D3DXVECTOR2(0.0f, 0.0f);
-	g_Player.hp = 500.0f;
-	g_Player.gravity = 0.0f;
 	g_Player.isJump = false;
 
 	//g_qCurrent.recordFrame_head = 0;
@@ -177,6 +175,7 @@ Player GetPlayer(void)
 	return g_Player;
 }
 
+/*
 //エンキュー...positionデータをキューに追加する、毎回最後尾にデータを追加する。
 void enqueue(Queue* q, D3DXVECTOR2 playerPosition)
 {
@@ -192,6 +191,10 @@ void enqueue(Queue* q, D3DXVECTOR2 playerPosition)
 D3DXVECTOR2 dequeue(Queue* q)
 {
 	D3DXVECTOR2 tmp;
+	if (q->recordFrame_tail == 0)
+	{
+		return q->position_Data[q->recordFrame_tail];
+	}
 	tmp = q->position_Data[0];
 	for (int i = 0; i < q->recordFrame_tail - 1; i++)
 	{
@@ -211,6 +214,7 @@ Queue GetqPrev(void)
 {
 	return g_qPrev;
 }
+*/
 
 //PUSH...positionデータをスタックに追加する
 void push(Stack* stack, D3DXVECTOR2 playerPosition)
@@ -229,7 +233,13 @@ D3DXVECTOR2 pop(Stack* stack)
 {
 	D3DXVECTOR2 ret;
 
-	ret = stack->position_Data[stack->recordFrame-1];
+	//データがスタックから全部取り出された場合 (#バグの原因#)
+	if (stack->recordFrame == 0)
+	{
+		return stack->position_Data[stack->recordFrame];
+	}
+
+	ret = stack->position_Data[stack->recordFrame - 1];
 
 	stack->recordFrame--;
 

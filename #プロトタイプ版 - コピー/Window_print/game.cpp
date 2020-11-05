@@ -61,11 +61,6 @@ void Game_Update(void)
 		GamePlayer_Jump();
 	}
 
-	if (Keylogger_Trigger(KL_R))
-	{
-			
-	}
-
 	GamePlayer_Update();
 	GameEffect_Update();
 	VPlayer_Update();

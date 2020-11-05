@@ -11,6 +11,7 @@
 #include"game_player.h"
 #include"texture.h"
 #include"sprite.h"
+#include"keylogger.h"
 
 /*--------------------------------------------------------------------------------------
    定数宣言
@@ -43,12 +44,18 @@ void VPlayer_Finalize(void)
 void VPlayer_Update(void)
 {
 	//Queue q = GetqPrev();
-	Stack pstack = GetstackPrev();
-	Stack cstack = GetstackCurrent();
+	Stack prev_stack = GetstackPrev();
 
-	for (int i = 0; i < pstack.recordFrame; i++)
+	//仮想プレイヤーのpositionを更新する
+	//プレイヤー前のフレームのpositionデータをスタック領域から取得する
+	for (int i = 0; i < prev_stack.recordFrame; i++)
 	{
-		g_VPlayer.position = pstack.position_Data[i];
+		if (Keylogger_Press(KL_B))
+		{
+			//Bキーを押し続けたら、プレイヤー前のフレームのpositionデータを1フレームずつ、仮想プレイヤーに代入する
+			//Bキーを離したら、仮想プレイヤーがその場で止まる
+			g_VPlayer.position = prev_stack.position_Data[i];
+		}
 
 	}
 	
